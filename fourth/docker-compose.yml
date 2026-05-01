@@ -1,0 +1,26 @@
+services:
+  api:
+    build: "./api"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/appdb
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo:6
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "27017:27017"  
+
+volumes:
+  mongo_data:
