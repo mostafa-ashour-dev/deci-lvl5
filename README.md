@@ -1,4 +1,4 @@
-![Cover](./assets/cover.png)
+![Cover](./cover.png)
 
 # DECI Level 5 Weekly Projects Repository
 
